@@ -1,13 +1,13 @@
----
-# external_components:
-  # - source: github://clydebarrow/esphome@pull/137/head
-    # components: [font, image, lvgl]
+external_components:
+  - source: github://pr#12312
+    components: [font, image, lvgl]
+    refresh: 1h
 
 # Substitution variables used through the codebase
 substitutions:
   icon_font: mdi_icons_40
   text_font: nunito_24
-  text_color: black
+  text_color: white
   bg_color: white
   button_on_color: "ep_orange"
   button_off_color: "very_dark_gray"
@@ -28,16 +28,17 @@ substitutions:
   # LCD backlight modes - Code in backlight.yaml
   # Day mode is set to Sunrise
   # Evening mode is set to sunset
-  # Set Night mode  at Midnight here
-  screen_night_hour: '0'
-  screen_night_minute: '0'
+  # Set Night mode at midnight here
+  touchscreen_night_hour: '0'
+  touchscreen_night_minute: '0'
 
   # Screen Size
   screen_height: '480'
   screen_width: '800'
+  byte_order: little_endian  
 
 esphome:
-  name: "tideweather"
+  name: "tideweather-display"
   friendly_name: "Tide Clock with weatehr"
   on_boot:
     - priority: 400
@@ -47,48 +48,37 @@ esphome:
 logger:
   level: debug
 
-api:
-  on_client_connected:
-    - script.execute: time_update
-
-time:
-  - platform: homeassistant
-    id: system_time
-    
-http_request:
-  useragent: "ESPHome"
-  # You need this cert for SDL
-  ca_certificate_path: /etc/ssl/certs/ca-certificates.crt    
 
 packages:
   # Generic configuration for ESP32 screens
+  # SDL has no Wi-Fi
+  # wifi: !include esphome-modular-lvgl-buttons/common/wifi.yaml
+  # Enable OTA updates with a status screen
+  # ota_screen: !include esphome-modular-lvgl-buttons/common/ota.yaml
   # All the colors
   colors: !include esphome-modular-lvgl-buttons/common/color.yaml
-  # Fonts you need
+  # Some nice basic fonts
   fonts: !include esphome-modular-lvgl-buttons/common/fonts.yaml
   # 1000s of glyphs
   glyphs: !include esphome-modular-lvgl-buttons/common/mdi_glyph_substitutions.yaml
   # Some basic sensors
   sensors: !include esphome-modular-lvgl-buttons/sensors/sensors_base-SDL.yaml
   # Styles + Themes
-  # theme_style: !include esphome-modular-lvgl-buttons/common/theme_style_debug.yaml
   theme_style: !include esphome-modular-lvgl-buttons/common/theme_style.yaml
+  # Include if your touch screen has a backlight. Also sets the time from HA
+  backlight: !include esphome-modular-lvgl-buttons/common/backlight_time.yaml
 
   # Harware description file
   hardware: !include esphome-modular-lvgl-buttons/hardware/SDL-lvgl.yaml
-
+  
   # Basic boot screen with ESPHome logo and device diagnostic info
   loading_screen: !include esphome-modular-lvgl-buttons/pages/loading_480px.yaml
   info_screen: !include esphome-modular-lvgl-buttons/pages/info.yaml
 
-  # Tide forcast package (Pulls info from NOAA web site directlly)
-  tide_info: !include
-    file: esphome-modular-lvgl-buttons/NOAA_tides/NOAA_tide_update.yaml
-    vars:
-      noaa_station_id: "8454578" # your your NOAA station ID here
-      noaa_unit_system: english  # Set to english or meteric
+  # Tide forcast packages
+  tides: !include esphome-modular-lvgl-buttons/tides/tide_update.yaml
 
-  # Weather packages
+# Weather packages
   # Display weather forecast using direct HA action (no template sensor needed!)
   # Icons are included automatically in the action file
   weather_forcast_80: !include
@@ -327,8 +317,9 @@ lvgl:
                 - meter:
                     height: 100%
                     width: 100%
+                    # radius: circle
                     text_font: nunito_24
-                    outline_width: 2
+                    outline_width: 10
                     outline_color: black
                     indicator:
                       opa: TRANSP # get rid of that black dot in the center of the meter
