@@ -6,6 +6,29 @@
 #   size: icon size (e.g., 80)
 #   weather_entity: weather entity id (default: weather.home)
 
+mapping:
+  - id: weather_icon_${size}
+    from: string
+    to: image
+    entries:
+      clear-night: clear_night_${size}
+      cloudy: cloudy_${size}
+      exceptional: exceptional_${size}
+      fog: fog_${size}
+      hail: hail_${size}
+      lightning: lightning_${size}
+      lightning-rainy: lightning_rainy_${size}
+      partlycloudy: partlycloudy_${size}
+      pouring: pouring_${size}
+      rainy: rainy_${size}
+      snowy: snowy_${size}
+      snowy-rainy: snowy_rainy_${size}
+      sunny: sunny_${size}
+      windy: windy_${size}
+      windy-variant: windy_${size}
+      unknown: unknown_${size}
+      unavailable: unknown_${size}
+
 globals:
   - id: forecast_condition_0
     type: std::string
@@ -140,435 +163,27 @@ script:
   # Icon update scripts - these read from the globals
   - id: update_forecast_icon_0
     then:
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "clear-night";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'clear_night_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "cloudy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'cloudy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "exceptional";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'exceptional_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "fog";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'fog_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "hail";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'hail_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "lightning";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'lightning_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "lightning-rainy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'lightning_rainy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "partlycloudy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'partlycloudy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "pouring";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'pouring_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "rainy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'rainy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "snowy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'snowy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "snowy-rainy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'snowy_rainy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "sunny";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'sunny_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "windy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'windy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_0) == "windy-variant";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_0
-              src: 'windy_${size}'
+      - lvgl.image.update:
+          id: forecast_condition_icon_0
+          src: !lambda 'return id(weather_icon_${size})[id(forecast_condition_0)];'
 
   - id: update_forecast_icon_1
     then:
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "clear-night";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'clear_night_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "cloudy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'cloudy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "exceptional";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'exceptional_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "fog";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'fog_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "hail";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'hail_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "lightning";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'lightning_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "lightning-rainy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'lightning_rainy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "partlycloudy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'partlycloudy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "pouring";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'pouring_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "rainy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'rainy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "snowy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'snowy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "snowy-rainy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'snowy_rainy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "sunny";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'sunny_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "windy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'windy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_1) == "windy-variant";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_1
-              src: 'windy_${size}'
+      - lvgl.image.update:
+          id: forecast_condition_icon_1
+          src: !lambda 'return id(weather_icon_${size})[id(forecast_condition_1)];'
 
   - id: update_forecast_icon_2
     then:
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "clear-night";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'clear_night_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "cloudy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'cloudy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "exceptional";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'exceptional_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "fog";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'fog_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "hail";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'hail_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "lightning";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'lightning_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "lightning-rainy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'lightning_rainy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "partlycloudy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'partlycloudy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "pouring";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'pouring_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "rainy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'rainy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "snowy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'snowy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "snowy-rainy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'snowy_rainy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "sunny";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'sunny_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "windy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'windy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_2) == "windy-variant";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_2
-              src: 'windy_${size}'
+      - lvgl.image.update:
+          id: forecast_condition_icon_2
+          src: !lambda 'return id(weather_icon_${size})[id(forecast_condition_2)];'
 
   - id: update_forecast_icon_3
     then:
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "clear-night";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'clear_night_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "cloudy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'cloudy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "exceptional";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'exceptional_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "fog";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'fog_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "hail";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'hail_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "lightning";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'lightning_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "lightning-rainy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'lightning_rainy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "partlycloudy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'partlycloudy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "pouring";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'pouring_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "rainy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'rainy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "snowy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'snowy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "snowy-rainy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'snowy_rainy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "sunny";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'sunny_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "windy";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'windy_${size}'
-      - if:
-          condition:
-            lambda: 'return id(forecast_condition_3) == "windy-variant";'
-          then:
-            lvgl.image.update:
-              id: forecast_condition_icon_3
-              src: 'windy_${size}'
+      - lvgl.image.update:
+          id: forecast_condition_icon_3
+          src: !lambda 'return id(weather_icon_${size})[id(forecast_condition_3)];'
 
 
 # Weather icons - included automatically

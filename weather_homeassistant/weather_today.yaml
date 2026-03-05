@@ -6,12 +6,38 @@
 #   weather_entity:
 #   weather_summary:
 
+mapping:
+  - id: weather_icon_${size}
+    from: string
+    to: image
+    entries:
+      clear-night: clear_night_${size}
+      cloudy: cloudy_${size}
+      exceptional: exceptional_${size}
+      fog: fog_${size}
+      hail: hail_${size}
+      lightning: lightning_${size}
+      lightning-rainy: lightning_rainy_${size}
+      partlycloudy: partlycloudy_${size}
+      pouring: pouring_${size}
+      rainy: rainy_${size}
+      snowy: snowy_${size}
+      snowy-rainy: snowy_rainy_${size}
+      sunny: sunny_${size}
+      windy: windy_${size}
+      windy-variant: windy_${size}
+      unknown: unknown_${size}
+      unavailable: unknown_${size}
+
 text_sensor:
   - platform: homeassistant
     entity_id: ${weather_entity | default("weather.home")}
     id: weather_condition
     on_value:
-      then: !include {file: weather_icons_update.yaml, vars: {size: "${size}", id: weather_condition_icon, input_id: weather_condition}}
+      then:
+        - lvgl.image.update:
+            id: weather_condition_icon
+            src: !lambda 'return id(weather_icon_${size})[x];'
 
   - platform: homeassistant
     entity_id: ${weather_entity | default("weather.home")}
@@ -25,6 +51,18 @@ text_sensor:
             text:
               format: "%s°"
               args: ['id(outdoor_temperature).state.c_str()']
+
+  - platform: homeassistant
+    entity_id: ${weather_entity | default("weather.home")}
+    attribute: humidity
+    id: weather_humidity
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: weather_humidity_today
+            text:
+              format: "%s%%"
+              args: ['id(weather_humidity).state.c_str()']
 
   - platform: homeassistant
     entity_id: ${weather_summary}
