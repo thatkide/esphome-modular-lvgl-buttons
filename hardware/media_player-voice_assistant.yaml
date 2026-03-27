@@ -1,24 +1,58 @@
 ---
 # Media Player and voice assistant
+# Uses Sendspin for multiroom audio and speaker_source for improved media playback
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/kahrendt/esphome
+      ref: 7a6cf5c8472b7e2fa18ee0fc314f66a80d249e32
+    components: [const, media_source, sendspin]
+  - source:
+      type: git
+      url: https://github.com/esphome/esphome
+      ref: ff8ce89556748509d7ee8724e12d9d43d3c8c1e8
+    refresh: 0s
+    components: [http_request]
+
+sendspin:
+  id: sendspin_hub
+  task_stack_in_psram: false
+
+media_source:
+  - platform: http_request
+    id: http_announcement_source
+    buffer_size: 250000
+  - platform: http_request
+    id: http_media_source
+    buffer_size: 500000
+  - platform: sendspin
+    id: sendspin_media_source
 
 media_player:
-  - platform: speaker
+  - platform: sendspin
+    id: sendspin_group_media_player
+  - platform: speaker_source
     name: "Media Player"
     id: my_media_player
-    codec_support_enabled: true
-    volume_min: 0.5
-    volume_max: 0.75
-    volume_increment: 0.05
     announcement_pipeline:
       speaker: announcement_resampling_speaker
       format: FLAC
       sample_rate: 48000
       num_channels: 1
+      sources:
+        - http_announcement_source
     media_pipeline:
       speaker: media_resampling_speaker
       format: FLAC
       num_channels: 1
       sample_rate: 48000
+      sources:
+        - http_media_source
+        - sendspin_media_source
+    volume_increment: 0.05
+    volume_min: 0.5
+    volume_max: 0.75
     on_announcement:
       - if:
           condition:
@@ -26,6 +60,11 @@ media_player:
           then:
             - micro_wake_word.stop
             - voice_assistant.stop
+            - wait_until:
+                condition:
+                  not:
+                    microphone.is_capturing:
+                timeout: 2s
       - mixer_speaker.apply_ducking:
           id: media_mixing_input
           decibel_reduction: 20
@@ -38,6 +77,7 @@ media_player:
                 voice_assistant.is_running:
             - not:
                 media_player.is_announcing:
+                    id: my_media_player
         then:
           - mixer_speaker.apply_ducking:
               id: media_mixing_input
@@ -45,14 +85,32 @@ media_player:
               duration: 1.0s
     on_play:
       - logger.log: "Media player started playing, disabling microphone"
-      - micro_wake_word.stop
-      - voice_assistant.stop
-    on_idle:
       - if:
           condition:
-            not:
-              voice_assistant.is_running:
+            - microphone.is_capturing:
           then:
+            - micro_wake_word.stop
+            - voice_assistant.stop
+            - wait_until:
+                condition:
+                  not:
+                    microphone.is_capturing:
+                timeout: 2s
+    on_idle:
+      - delay: 500ms
+      - if:
+          condition:
+            and:
+              - not:
+                  voice_assistant.is_running:
+              - not:
+                  media_player.is_playing:
+                      id: my_media_player
+              - not:
+                  media_player.is_announcing:
+                      id: my_media_player
+          then:
+            - logger.log: "Media player idle, restarting wake word"
             - micro_wake_word.start
 
 sensor:
@@ -97,18 +155,22 @@ voice_assistant:
   volume_multiplier: 2.0
   conversation_timeout: 300s
   on_end:
-    # Wait a short amount of time to see if an announcement starts
+    # Give the TTS announcement time to be queued and start playing
+    - delay: 1s
+    # Wait for any announcement or media to finish before restarting the mic
     - wait_until:
         condition:
-          - media_player.is_announcing:
-        timeout: 0.5s
-    # Announcement is finished and the I2S bus is free
-    - wait_until:
-        - and:
+          and:
             - not:
                 media_player.is_announcing:
+                    id: my_media_player
             - not:
                 media_player.is_playing:
+                    id: my_media_player
+        timeout: 30s
+    # Brief pause to let the speaker fully release the I2S bus
+    - delay: 300ms
+    - logger.log: "Voice assistant ended, restarting wake word"
     - micro_wake_word.start:
   on_client_connected:
     - micro_wake_word.start:

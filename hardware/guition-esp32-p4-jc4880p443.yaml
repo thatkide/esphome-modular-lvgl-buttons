@@ -34,7 +34,8 @@ psram:
 preferences:
   flash_write_interval: 5min
   
-http_request:  # Needed by esp32_hosted-update and any JSON stuff  
+http_request:  # Needed by esp32_hosted-update and any JSON stuff
+  buffer_size_rx: 2048
 
 # -------------------------------------------
 # Network hardware
@@ -132,7 +133,6 @@ display:
 # Special LVGL settings required for this display
 lvgl:
   byte_order: little_endian
-  buffer_size: 100%
 
 # -------------------------------------------
 # Audio - speaker/mic
@@ -172,7 +172,7 @@ speaker:
     audio_dac: my_dac
     dac_type: external
     channel: mono
-    buffer_duration: 100ms
+    buffer_duration: 500ms
     bits_per_sample: 16bit
     sample_rate: 48000
 
