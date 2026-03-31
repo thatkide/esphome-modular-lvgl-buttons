@@ -92,6 +92,13 @@ sensor:
     device_class: energy
     state_class: total_increasing
     accuracy_decimals: 2
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: daily_energy_consumption_watts
+            text:
+              format: "%.1f"
+              args: ['id(sensor_energy_consumption_today).state']
   - platform: template
     name: "Net Energy Consumption Today"
     id: sensor_net_energy_consumption_today
@@ -100,6 +107,13 @@ sensor:
     device_class: energy
     state_class: total_increasing
     accuracy_decimals: 2
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: daily_energy_imported_watts
+            text:
+              format: "%.1f"
+              args: ['id(sensor_net_energy_consumption_today).state']
   - platform: template
     name: "Energy Production Today"
     id: sensor_energy_production_today
@@ -108,6 +122,13 @@ sensor:
     device_class: energy
     state_class: total_increasing
     accuracy_decimals: 2
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: daily_energy_production_watts
+            text:
+              format: "%.1f"
+              args: ['id(sensor_energy_production_today).state']
   - platform: template
     name: "Net Energy Production Today"
     id: sensor_net_energy_production_today
@@ -116,3 +137,10 @@ sensor:
     device_class: energy
     state_class: total_increasing
     accuracy_decimals: 2
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: daily_energy_exported_watts
+            text:
+              format: "%.1f"
+              args: ['id(sensor_net_energy_production_today).state']

@@ -49,6 +49,34 @@ esphome config example_code/SDL-lvgl-display_modular_480px.yaml
 
 Read **LVGL_REFERENCE.md** for critical LVGL v8 behavior — especially image tiling, layout override rules, and the obj wrapper pattern for images.
 
+## Page Grid Layout Pattern
+
+When using a grid layout on a page, use the shorthand `layout: NxM` (rows x columns) and place children with `grid_cell_row_pos` / `grid_cell_column_pos`. **Every child must have both `grid_cell_x_align: stretch` and `grid_cell_y_align: stretch`** so LVGL sizes them to fill their cells. Without these, widgets collapse to content size and the grid looks broken.
+
+```yaml
+# Example: 3x3 page grid
+lvgl:
+  pages:
+    - id: main_page
+      layout: 3x3
+      styles: page_style
+      widgets:
+        - obj:
+            grid_cell_row_pos: 0
+            grid_cell_column_pos: 0
+            grid_cell_x_align: stretch
+            grid_cell_y_align: stretch
+            # ... widget content
+        - obj:
+            grid_cell_row_pos: 0
+            grid_cell_column_pos: 1
+            grid_cell_row_span: 2      # span multiple cells
+            grid_cell_column_span: 2
+            grid_cell_x_align: stretch
+            grid_cell_y_align: stretch
+            # ... widget content
+```
+
 ## ESPHome Jinja/Substitutions
 
 ESPHome uses Jinja2 but with **different delimiters** than standard Jinja. Getting this wrong produces broken YAML.

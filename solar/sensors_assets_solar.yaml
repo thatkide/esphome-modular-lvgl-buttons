@@ -56,9 +56,9 @@ sensor:
     internal: true
     sources:
       - source: daily_energy_net_import
-        coeffecient: 1.0
+        coefficient: 1.0
       - source: daily_energy_net_export
-        coeffecient: -1.0
+        coefficient: -1.0
     on_value:
       then:
         - if:
@@ -83,3 +83,27 @@ sensor:
             text:
               format: "%.1f"
               args: ['fabs(id(daily_energy_net_sum).state)']  # Always display a positive number
+
+# Solar icons - included automatically
+image:
+  rgb565:
+    alpha_channel:
+      - file: esphome-modular-lvgl-buttons/assets/images/solar/house.svg
+        id: house_icon_45
+        resize: 45x45
+
+      - file: esphome-modular-lvgl-buttons/assets/images/solar/grid_icon.svg
+        id: grid_icon_45
+        resize: 45x45
+
+      - file: esphome-modular-lvgl-buttons/assets/images/solar/produced_icon.svg
+        id: produced_icon_45
+        resize: 45x45
+
+      - file: esphome-modular-lvgl-buttons/assets/images/solar/down_arrow.svg
+        id: down_arrow_45
+        resize: 45x45
+
+      - file: esphome-modular-lvgl-buttons/assets/images/solar/up_arrow.svg
+        id: up_arrow_45
+        resize: 45x45
