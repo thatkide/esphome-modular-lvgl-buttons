@@ -49,7 +49,7 @@ light:
   - platform: monochromatic
     output: backlight_output
     id: display_backlight
-    restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_ON
     default_transition_length: 4s
     gamma_correct: 1.8
 

@@ -52,7 +52,7 @@ light:
     output: backlight_pwm
     name: "Display Backlight"
     id: display_backlight
-    restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_ON
 
 # SPI configuration for ST7796 display controller
 spi:

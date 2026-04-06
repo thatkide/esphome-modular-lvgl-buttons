@@ -15,8 +15,6 @@ image:
         resize: 320x95
 
 lvgl:
-  on_ready:
-    - light.turn_on: display_backlight
   top_layer:
     widgets:
       - button:

@@ -85,7 +85,7 @@ light:
     name: Display Backlight
     icon: mdi:lightbulb-on
     id: display_backlight
-    restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_ON
 
 # -------------------------------------------
 # i2c bus

@@ -53,7 +53,7 @@ switch:
   - platform: gpio
     internal: true
     id: exio2
-    restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_ON
     pin:
       waveshare_io_ch32v003: waveshare_io_hub
       number: 2
@@ -66,7 +66,7 @@ light:
     name: Display Backlight
     icon: mdi:lightbulb-on
     id: display_backlight
-    restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_ON
     default_transition_length: 250ms
     on_turn_on:
       then:

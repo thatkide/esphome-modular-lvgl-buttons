@@ -64,14 +64,14 @@ light:
     name: Display Backlight
     icon: mdi:lightbulb-on
     id: display_backlight
-    restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_ON
   - platform: rgb
     id: rgb_led
     name: RGB LED
     red: output_red
     green: output_green
     blue: output_blue
-    restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_ON
 
 spi:
   - id: tft

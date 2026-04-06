@@ -42,7 +42,7 @@ light:
     output: backlight_pwm
     name: "Display Backlight"
     id: display_backlight
-    restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_ON
 
 # QSPI configuration for AXS15231B display controller
 spi:

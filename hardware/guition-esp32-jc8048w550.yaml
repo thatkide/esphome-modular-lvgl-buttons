@@ -46,7 +46,7 @@ light:
     output: gpio_backlight_pwm
     name: Display Backlight
     icon: mdi:lightbulb-on
-    restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_ON
 
 # -------------------------------------------
 # Touchscreen gt911

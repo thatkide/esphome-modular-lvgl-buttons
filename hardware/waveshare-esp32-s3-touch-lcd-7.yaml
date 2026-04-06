@@ -50,7 +50,7 @@ switch:
       mode:
         output: true
       inverted: false
-    restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_ON
 
 # Had to add this fake one so all the code still works.
 

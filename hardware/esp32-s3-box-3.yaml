@@ -43,7 +43,7 @@ light:
     name: LCD Backlight
     entity_category: config
     output: display_backlight_output
-    restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_ON
     default_transition_length: 250ms
 
 # -------------------------------------------

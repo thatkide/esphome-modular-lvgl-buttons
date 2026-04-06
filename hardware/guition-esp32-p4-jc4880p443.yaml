@@ -79,7 +79,7 @@ light:
     icon: mdi:lightbulb-on
     id: display_backlight
     entity_category: config
-    restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_ON
     default_transition_length: 250ms
 
 # -------------------------------------------
