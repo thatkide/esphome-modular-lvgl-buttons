@@ -113,9 +113,9 @@ touchscreen:
     interrupt_pin: GPIO21
     address: 0x5D
     transform:
-      swap_xy: true
+      swap_xy: false
       mirror_x: false
-      mirror_y: true
+      mirror_y: false
 #   on_touch:
 #     - logger.log:
 #           format: Touch at (%d, %d)
