@@ -21,8 +21,8 @@ lvgl:
           id: loading_page
           bg_color: slate_blue_gray
           shadow_opa: transp
-          width: ${screen_width}
-          height: ${screen_height}
+          width: 100%
+          height: 100%
           radius: 0
           on_press:
             - lvgl.widget.hide: loading_page

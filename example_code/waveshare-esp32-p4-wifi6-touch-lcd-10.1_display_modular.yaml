@@ -76,9 +76,12 @@ packages:
   backlight: !include esphome-modular-lvgl-buttons/common/backlight_time.yaml
 
   # Hardware description file for 10.1" display
-  hardware: !include esphome-modular-lvgl-buttons/hardware/waveshare-esp32-p4-wifi6-touch-lcd-10.1.yaml
+  hardware: !include
+    file: esphome-modular-lvgl-buttons/hardware/waveshare-esp32-p4-wifi6-touch-lcd-10.1.yaml
+    vars:
+      rotation: "270"  # set screen rotation 0, 90, 180, 270
   # Media Player and Voice Assistant
-  media_voice: !include esphome-modular-lvgl-buttons/hardware/media_player-voice_assistant.yaml
+  # media_voice: !include esphome-modular-lvgl-buttons/hardware/media_player-voice_assistant.yaml
 
   # Basic boot screen with ESPHome logo and device diagnostic info
   # Note: loading may need adjustment for 800x1280 resolution
@@ -145,7 +148,7 @@ lvgl:
   buffer_size: 100%
   pages:
     - id: main_page
-      layout: 10x6
+      layout: 6x10
       styles: page_style
       <<: !include esphome-modular-lvgl-buttons/widgets/swipe_navigation.yaml
       widgets:
@@ -154,8 +157,8 @@ lvgl:
             id: button_12
             grid_cell_x_align: stretch
             grid_cell_y_align: stretch
-            grid_cell_row_pos: 9
-            grid_cell_column_pos: 5
+            grid_cell_row_pos: 5
+            grid_cell_column_pos: 9
             grid_cell_row_span: 1
             grid_cell_column_span: 1
             outline_width: 1   # debug code - This is for visualizing boundaries remove for production
@@ -165,7 +168,7 @@ lvgl:
                   text_font: $text_font
                   align: center
                   text_color: white
-                  text: "Cell 9,5"
+                  text: "Cell 5,9"
 
 # If you want to use other icons add them to the list here
 font:

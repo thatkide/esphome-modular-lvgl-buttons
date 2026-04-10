@@ -71,8 +71,8 @@ lvgl:
       - obj:
           id: ota_widget
           hidden: true
-          width: $screen_width
-          height: $screen_height
+          width: 100%
+          height: 100%
           align: center
           clickable: false
           bg_color: slate_blue_gray

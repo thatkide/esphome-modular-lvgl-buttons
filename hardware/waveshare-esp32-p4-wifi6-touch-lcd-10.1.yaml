@@ -6,11 +6,12 @@
 
 substitutions:
   # Screen Size (portrait orientation - 10.1" display)
-  screen_height: 1280
-  screen_width: 800
+  # Swapped automatically for 90/270 rotation
+  screen_height: ${1280 if rotation | default("0") not in ["90", "270"] else 800}
+  screen_width: ${800 if rotation | default("0") not in ["90", "270"] else 1280}
 
 esphome:
-  min_version: 2026.3.0
+  min_version: 2026.4.0
   project:
     name: "Waveshare.ESP32-P4-WIFI6-Touch-LCD-10-1"
     version: "1.0"
@@ -121,7 +122,6 @@ display:
     model: WAVESHARE-P4-NANO-10.1
     reset_pin:
       number: GPIO27
-    rotation: 0
     update_interval: never
     auto_clear_enabled: false
     dimensions:
@@ -130,6 +130,7 @@ display:
 
 # Special LVGL settings required for this display
 lvgl:
+  rotation: ${rotation | default("0")}
   byte_order: little_endian
 
 # -------------------------------------------
