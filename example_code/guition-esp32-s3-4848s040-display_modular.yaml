@@ -64,8 +64,10 @@ packages:
   backlight: !include esphome-modular-lvgl-buttons/common/backlight_time.yaml
 
   # Hardware description file
-  hardware: !include esphome-modular-lvgl-buttons/hardware/guition-esp32-s3-4848s040.yaml
-
+  hardware: !include
+    file: esphome-modular-lvgl-buttons/hardware/guition-esp32-s3-4848s040.yaml
+    vars:
+      rotation: "0"  # set screen rotation 0, 90, 180, 270
   # Basic boot screen with ESPHome logo and device diagnostic info
   loading_screen: !include esphome-modular-lvgl-buttons/pages/loading.yaml
   # info screen - WiFi login, IP address, MAC address etc
@@ -87,7 +89,7 @@ packages:
 
   # Add a button that displays the time
   button_2: !include
-    file: esphome-modular-lvgl-buttons/buttons/time_button_legacy.yaml
+    file: esphome-modular-lvgl-buttons/ui/clock/time_button.yaml
     vars:
       uid: button_2
       row: 0
@@ -97,7 +99,7 @@ packages:
 
   # Add a button that goes to a different page
   button_3: !include
-    file: esphome-modular-lvgl-buttons/buttons/page_button_legacy.yaml
+    file: esphome-modular-lvgl-buttons/ui/page/page_button.yaml
     vars:
       uid: button_3
       row: 1

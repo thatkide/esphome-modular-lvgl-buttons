@@ -5,7 +5,7 @@
 ---
 
 esphome:
-  min_version: 2026.3.0
+  min_version: 2026.4.0
   platformio_options:
     board_build.flash_mode: dio
 
@@ -81,3 +81,7 @@ display:
       red: [1, 2, 42, 41, 40]
       blue: [14, 38, 18, 17, 10]
       green: [39, 0, 45, 48, 47, 21]
+
+# Special LVGL settings required for this display
+lvgl:
+  rotation: ${rotation | default("0")}

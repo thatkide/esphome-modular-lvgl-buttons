@@ -104,7 +104,7 @@ packages:
       
   # Add a button that displays the time
   button_3: !include
-    file: esphome-modular-lvgl-buttons/buttons/time_button_legacy.yaml
+    file: esphome-modular-lvgl-buttons/ui/clock/time_button.yaml
     vars:
       uid: button_3
       row: 1

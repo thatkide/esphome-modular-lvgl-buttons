@@ -10,7 +10,7 @@ substitutions:
   screen_width: 480
 
 esphome:
-  min_version: 2026.3.0
+  min_version: 2026.4.0
   project:
     name: "Waveshare.ESP32-S3-touch-lcd-2_8c"
     version: "1.0"
@@ -178,3 +178,7 @@ display:
         - 48  # b3
         - 47  # b4
         - 21  # b5
+
+# Special LVGL settings required for this display
+lvgl:
+  rotation: ${rotation | default("0")}

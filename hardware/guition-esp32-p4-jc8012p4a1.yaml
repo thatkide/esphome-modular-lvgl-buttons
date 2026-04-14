@@ -12,12 +12,13 @@ external_components:
     components: [gsl3680]
 
 substitutions:
-  # Screen Size
-  screen_height: 1280
-  screen_width: 800
+  # Screen Size (portrait orientation - 10.1" display)
+  # Swapped automatically for 90/270 rotation
+  screen_height: ${1280 if rotation | default("180") not in ["90", "270"] else 800}
+  screen_width: ${800 if rotation | default("180") not in ["90", "270"] else 1280}
 
 esphome:
-  min_version: 2026.3.0
+  min_version: 2026.4.0
   project:
     name: "Guition.ESP32-P4-JC8012P4A1"
     version: "1.0"
@@ -117,8 +118,8 @@ touchscreen:
     interrupt_pin: GPIO21
     transform:
       swap_xy: false
-      mirror_x: false
-      mirror_y: true
+      mirror_x: true
+      mirror_y: false
 
 # -------------------------------------------
 # Display
@@ -129,7 +130,6 @@ display:
     id: my_display
     update_interval: never
     reset_pin: GPIO27
-    rotation: 180
     auto_clear_enabled: false
     color_order: RGB
     dimensions:
@@ -138,6 +138,7 @@ display:
 
 # Special LVGL settings required for this display
 lvgl:
+  rotation: ${rotation | default("180")}
   byte_order: little_endian
   buffer_size: 100%
 

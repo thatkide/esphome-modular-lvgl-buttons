@@ -9,7 +9,7 @@ substitutions:
   screen_width: 480
 
 esphome:
-  min_version: 2026.3.0
+  min_version: 2026.4.0
   project:
     name: "Guition.ESP32-S3-4848S040"
     version: "1.0"
@@ -134,3 +134,7 @@ display:
         - 6         # b3
         - 7         # b4
         - 15        # b5
+
+# Special LVGL settings required for this display
+lvgl:
+  rotation: ${rotation | default("0")}

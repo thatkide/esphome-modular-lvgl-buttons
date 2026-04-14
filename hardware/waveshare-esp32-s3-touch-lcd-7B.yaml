@@ -5,7 +5,7 @@
 ---
 
 esphome:
-  min_version: 2026.3.0
+  min_version: 2026.4.0
   project:
     name: "Waveshare.ESP32-S3-Touch-LCD-7B"
     version: "1.0.0"
@@ -157,3 +157,7 @@ display:
         - 48  # g5
         - 47  # g6
         - 21  # g7
+
+# Special LVGL settings required for this display
+lvgl:
+  rotation: ${rotation | default("0")}

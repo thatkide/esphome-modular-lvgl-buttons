@@ -8,7 +8,7 @@ substitutions:
   screen_width: 480
   
 esphome:
-  min_version: 2026.3.0
+  min_version: 2026.4.0
   project:
     name: "Guition.ESP32-jc8048w535"
     version: "1.0"
@@ -82,3 +82,7 @@ display:
     draw_from_origin: true
     update_interval: never
     auto_clear_enabled: false
+
+# Special LVGL settings required for this display
+lvgl:
+  rotation: ${rotation | default("0")}

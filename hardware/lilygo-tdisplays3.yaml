@@ -4,7 +4,7 @@
 ---
 
 esphome:
-  min_version: 2026.3.0
+  min_version: 2026.4.0
   platformio_options:
     build_unflags: -Werror=all
     board_build.flash_mode: dio
@@ -58,7 +58,6 @@ i2c:
 display:
   - platform: ili9xxx
     id: my_display
-    rotation: 270
     bus_type: i80
     cs_pin: 6
     reset_pin: 5
@@ -73,6 +72,10 @@ display:
     invert_colors: true
     auto_clear_enabled: false
     update_interval: never
+
+# Special LVGL settings required for this display
+lvgl:
+  rotation: ${rotation | default("270")}
 
 binary_sensor:
   - platform: gpio

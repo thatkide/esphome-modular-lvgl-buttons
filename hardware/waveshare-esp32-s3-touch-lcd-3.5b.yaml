@@ -13,7 +13,7 @@ substitutions:
 esphome:
   name: waveshare-esp32-s3-touch
   friendly_name: WaveShare ESP32-S3 Touch LCD 3.5B
-  min_version: 2026.3.0
+  min_version: 2026.4.0
 
 esp32:
   board: esp32-s3-devkitc-1
@@ -72,7 +72,6 @@ display:
     # better suited for an horizontal installation rather than a vertical
     # install. If you plan to install this vertically, just remove the following
     # line and the "transform" block in the "touchscreen" section below in this file.
-    rotation: 90
     color_order: rgb
     cs_pin: GPIO12      # LCD_CS
     # FIXME TO TEST: reset pin should be avail via GPIO port expander pin 1
@@ -107,9 +106,9 @@ touchscreen:
     # this "transform" block is required to "align" the touch interface
     # to the 90degrees rotation of the screen (see "display" definition)
     transform:
-      swap_xy: true
+      swap_xy: false
       mirror_x: false
-      mirror_y: true
+      mirror_y: false
       # Uncomment the following block to log coordinates of touch points:
       # this is useful to e.g. debug the mirror_x|y configs above
       # on_update:
@@ -119,3 +118,7 @@ touchscreen:
       #             ESP_LOGI("Touch points:", "id=%d x=%d, y=%d", touch.id, touch.x, touch.y);
       #           }
       #       }
+
+# Special LVGL settings required for this display
+lvgl:
+  rotation: ${rotation | default("90")}

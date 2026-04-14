@@ -45,8 +45,10 @@ packages:
   # Include if your touch screen has a backlight. Also sets the time from HA
 
   # Hardware description file
-  hardware: !include esphome-modular-lvgl-buttons/hardware/waveshare-esp32-s3-touch-lcd-2.8c.yaml
-  
+  hardware: !include
+    file: esphome-modular-lvgl-buttons/hardware/waveshare-esp32-s3-touch-lcd-2.8c.yaml
+    vars:
+      rotation: "0"  # set screen rotation 0, 90, 180, 270
   # Basic boot screen with ESPHome logo and device diagnostic info
   loading_screen: !include esphome-modular-lvgl-buttons/pages/loading.yaml
   # info screen - WiFi login, IP address, MAC address etc

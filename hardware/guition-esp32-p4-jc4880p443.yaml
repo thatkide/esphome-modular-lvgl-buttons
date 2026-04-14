@@ -5,12 +5,13 @@
 # https://github.com/wegi1/ESP32P4-JC4880P443C-I-W/blob/main/5-Schematic/JC4880P443_V1.0.pdf
 
 substitutions:
-  # Screen Size (Configured as Lanscape)
-  screen_height: 480
-  screen_width: 800
+  # Screen Size (portrait orientation - 4.3" display)
+  # Swapped automatically for 90/270 rotation
+  screen_height: ${800 if rotation | default("90") not in ["90", "270"] else 480}
+  screen_width: ${480 if rotation | default("90") not in ["90", "270"] else 800}
 
 esphome:
-  min_version: 2026.3.0
+  min_version: 2026.4.0
   project:
     name: "Guition.ESP32-P4-jc4880p443"
     version: "1.0"
@@ -114,9 +115,9 @@ touchscreen:
     id: my_touchscreen
     display: device_display
     transform:
-      swap_xy: true
+      swap_xy: false
       mirror_x: false
-      mirror_y: true
+      mirror_y: false
 
 # -------------------------------------------
 # Display
@@ -127,13 +128,13 @@ display:
     model: JC4880P443
     update_interval: never
     auto_clear_enabled: false
-    rotation: 90
     dimensions:
       width: 480
       height: 800
 
 # Special LVGL settings required for this display
 lvgl:
+  rotation: ${rotation | default("90")}
   byte_order: little_endian
 
 # -------------------------------------------

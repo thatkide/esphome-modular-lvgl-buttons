@@ -22,7 +22,7 @@ substitutions:
 esphome:
   name: waveshare-esp32-s3-touch-35
   friendly_name: WaveShare ESP32-S3 Touch LCD 3.5
-  min_version: 2026.3.0
+  min_version: 2026.4.0
 
 esp32:
   board: esp32-s3-devkitc-1
@@ -71,7 +71,6 @@ display:
     color_order: bgr
     invert_colors: true
     dc_pin: GPIO3
-    rotation: 90
     show_test_card: true
 
 # I2C configuration for FT6336 touch controller
@@ -95,3 +94,11 @@ touchscreen:
     id: my_touchscreen
     i2c_id: touch_i2c
     update_interval: 10ms
+    transform:
+      swap_xy: true
+      mirror_x: false
+      mirror_y: true
+
+# Special LVGL settings required for this display
+lvgl:
+  rotation: ${rotation | default("90")}

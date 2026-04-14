@@ -5,12 +5,13 @@
 # Schematic: https://files.waveshare.com/wiki/ESP32-P4-WIFI6-Touch-LCD-7B/ESP32-P4-WIFI6-Touch-LCD-7B.pdf
 
 substitutions:
-  # Screen Size
-  screen_height: 600
-  screen_width: 1024
+  # Screen Size (landscape orientation - 7B display)
+  # Swapped automatically for 90/270 rotation
+  screen_height: ${600 if rotation | default("180") not in ["90", "270"] else 1024}
+  screen_width: ${1024 if rotation | default("180") not in ["90", "270"] else 600}
 
 esphome:
-  min_version: 2026.3.0
+  min_version: 2026.4.0
   project:
     name: "Waveshare.ESP32-P4-WIFI6-Touch-LCD-7B"
     version: "1.0"
@@ -81,8 +82,8 @@ touchscreen:
     update_interval: 50ms
     transform:
       swap_xy: false
-      mirror_x: false
-      mirror_y: false
+      mirror_x: true
+      mirror_y: true
       # on_touch:
       #   - logger.log:
       #   format: Touch at (%d, %d)
@@ -123,7 +124,6 @@ display:
     model: WAVESHARE-ESP32-P4-WIFI6-TOUCH-LCD-7B
     reset_pin:
       number: 33
-    rotation: 180
     update_interval: never
     auto_clear_enabled: false
     dimensions:
@@ -132,6 +132,7 @@ display:
 
 # Special LVGL settings required for this display
 lvgl:
+  rotation: ${rotation | default("180")}
   byte_order: little_endian
 
 # -------------------------------------------

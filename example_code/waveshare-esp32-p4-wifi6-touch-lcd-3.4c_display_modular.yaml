@@ -72,7 +72,10 @@ packages:
   backlight: !include esphome-modular-lvgl-buttons/common/backlight_time.yaml
 
   # Hardware description file for 10.1" display
-  hardware: !include esphome-modular-lvgl-buttons/hardware/waveshare-esp32-p4-wifi6-touch-lcd-3.4c.yaml
+  hardware: !include
+    file: esphome-modular-lvgl-buttons/hardware/waveshare-esp32-p4-wifi6-touch-lcd-3.4c.yaml
+    vars:
+      rotation: "0"  # set screen rotation 0, 90, 180, 270
   # Media Player and Voice Assistant
   media_voice: !include esphome-modular-lvgl-buttons/hardware/media_player-voice_assistant.yaml
 

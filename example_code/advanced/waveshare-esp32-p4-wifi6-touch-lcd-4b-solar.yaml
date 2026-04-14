@@ -84,7 +84,10 @@ packages:
   theme:  !include esphome-modular-lvgl-buttons/common/theme/index.yaml
   sensors:        !include esphome-modular-lvgl-buttons/common/sensors_base.yaml
   backlight:      !include esphome-modular-lvgl-buttons/common/backlight_time.yaml
-  hardware:       !include esphome-modular-lvgl-buttons/hardware/waveshare-esp32-p4-wifi6-touch-lcd-4b.yaml
+  hardware: !include
+    file: esphome-modular-lvgl-buttons/hardware/waveshare-esp32-p4-wifi6-touch-lcd-4b.yaml
+    vars:
+      rotation: "0"  # set screen rotation 0, 90, 180, 270
   media_voice:    !include esphome-modular-lvgl-buttons/hardware/media_player-voice_assistant.yaml
   loading_screen: !include esphome-modular-lvgl-buttons/pages/loading.yaml
   info_screen:    !include esphome-modular-lvgl-buttons/pages/info.yaml
@@ -103,7 +106,7 @@ packages:
       sensor_font: $sensor_font
 
   btn_time: !include
-    file: esphome-modular-lvgl-buttons/buttons/time_button_legacy.yaml
+    file: esphome-modular-lvgl-buttons/ui/clock/time_button.yaml
     vars:
       uid: time_btn
       row: 0
@@ -176,7 +179,7 @@ packages:
       sensor_font: $sensor_font
 
   btn_info: !include
-    file: esphome-modular-lvgl-buttons/buttons/page_button_legacy.yaml
+    file: esphome-modular-lvgl-buttons/ui/page/page_button.yaml
     vars:
       uid: info_btn
       row: 3

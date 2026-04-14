@@ -65,7 +65,6 @@ lvgl:
   gradients:
   - id: ${uid}_hue_gradient
     direction: ver
-    dither: none
     stops:
     - color: 0xff0000
       position: 0
@@ -84,7 +83,6 @@ lvgl:
 
   - id: ${uid}_color_temp_gradient
     direction: ver
-    dither: none
     stops:
     - color: 0xa0c8ff
       position: 0

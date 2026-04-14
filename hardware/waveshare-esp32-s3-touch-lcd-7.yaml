@@ -8,7 +8,7 @@
 ---
 
 esphome:
-  min_version: 2026.3.0
+  min_version: 2026.4.0
   project:
     name: "Waveshare.ESP32-S3-touch-lcd-7"
     version: "1.0"
@@ -89,6 +89,10 @@ touchscreen:
     ch422g: ch422g_hub
     number: 1
     mode: OUTPUT
+  transform:
+    swap_xy: true
+    mirror_x: false
+    mirror_y: true
 # on_touch:
 #   - lambda: |-
 #       ESP_LOGI("Touch", "Touch detected at x=%d, y=%d", touch.x, touch.y);
@@ -107,7 +111,6 @@ display:
   - platform: mipi_rgb
     model: ESP32-S3-TOUCH-LCD-7-800X480
     id: my_display
-    rotation: 90
     update_interval: never
     auto_clear_enabled: false
     color_order: RGB
@@ -154,3 +157,7 @@ display:
         - 48
         - 47
         - 21
+
+# Special LVGL settings required for this display
+lvgl:
+  rotation: ${rotation | default("90")}

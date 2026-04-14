@@ -10,7 +10,7 @@ substitutions:
   screen_width: 272
 
 esphome:
-  min_version: 2026.3.0
+  min_version: 2026.4.0
   project:
     name: "Guition.ESP32-jc4827w543C"
     version: "1.0"
@@ -66,6 +66,10 @@ touchscreen:
       number: 3
       ignore_strapping_warning: true
     reset_pin: GPIO38
+    transform:
+      swap_xy: false
+      mirror_x: true
+      mirror_y: true
 
 # -------------------------------------------
 # Display NV3041A
@@ -90,7 +94,6 @@ display:
       number: 45
       ignore_strapping_warning: true
     invert_colors: true
-    rotation: 180
     init_sequence:
       - [0xff, 0xa5]
       - [0x36, 0xc0]
@@ -184,3 +187,7 @@ display:
       - [0xff, 0x00]
       - [0x11, 0x00]
       - [0x29, 0x00]
+
+# Special LVGL settings required for this display
+lvgl:
+  rotation: ${rotation | default("180")}

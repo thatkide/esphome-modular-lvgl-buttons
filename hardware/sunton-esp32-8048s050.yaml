@@ -5,7 +5,7 @@
 ---
 
 esphome:
-  min_version: 2026.3.0
+  min_version: 2026.4.0
   project:
     name: "Sunton.ESP32-8048S050C"
     version: "1.0"
@@ -59,7 +59,7 @@ touchscreen:
     update_interval: 16ms
     transform:
       mirror_x: true
-      swap_xy: true
+      mirror_y: true
 # reset_pin: 38
 # on_touch:
 #   - lambda: |-
@@ -79,7 +79,6 @@ display:
     dimensions:
       width: 800
       height: 480
-    rotation: 90
     color_order: RGB
     de_pin: 40
     hsync_pin: 39
@@ -99,3 +98,7 @@ display:
       blue: [8, 3, 46, 9, 1]
     update_interval: never
     auto_clear_enabled: false
+
+# Special LVGL settings required for this display
+lvgl:
+  rotation: ${rotation | default("90")}

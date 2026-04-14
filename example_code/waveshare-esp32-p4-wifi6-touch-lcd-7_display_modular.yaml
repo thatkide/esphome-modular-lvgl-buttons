@@ -73,7 +73,10 @@ packages:
   backlight: !include esphome-modular-lvgl-buttons/common/backlight_time.yaml
 
   # Hardware description file for 7" display
-  hardware: !include esphome-modular-lvgl-buttons/hardware/waveshare-esp32-p4-wifi6-touch-lcd-7.yaml
+  hardware: !include
+    file: esphome-modular-lvgl-buttons/hardware/waveshare-esp32-p4-wifi6-touch-lcd-7.yaml
+    vars:
+      rotation: "0"  # set screen rotation 0, 90, 180, 270
   # Media Player and Voice Assistant
   media_voice: !include esphome-modular-lvgl-buttons/hardware/media_player-voice_assistant.yaml
 
@@ -99,7 +102,7 @@ packages:
 
   # Add a button that displays the time
   button_2: !include
-    file: esphome-modular-lvgl-buttons/buttons/time_button_legacy.yaml
+    file: esphome-modular-lvgl-buttons/ui/clock/time_button.yaml
     vars:
       uid: button_2
       row: 0
@@ -109,7 +112,7 @@ packages:
 
   # Add a button that goes to a different page
   button_3: !include
-    file: esphome-modular-lvgl-buttons/buttons/page_button_legacy.yaml
+    file: esphome-modular-lvgl-buttons/ui/page/page_button.yaml
     vars:
       uid: button_3
       row: 1
