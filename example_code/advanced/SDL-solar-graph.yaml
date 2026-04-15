@@ -93,52 +93,44 @@ packages:
 
   # Add a button that displays the time
   button_1: !include
-    file: esphome-modular-lvgl-buttons/buttons/sensor_button_legacy.yaml
+    file: esphome-modular-lvgl-buttons/ui/sensor/local.yaml
     vars:
       uid: button_1
       row: 0
       column: 0
       text: Energy Consumption today
       icon: $mdi_meter_electric_outline
-      icon_color: red
-      sensor_id: sensor_energy_consumption_today
-      sensor_font: nunito_24
+      entity_id: sensor_energy_consumption_today
 
   button_3: !include
-    file: esphome-modular-lvgl-buttons/buttons/sensor_button_legacy.yaml
+    file: esphome-modular-lvgl-buttons/ui/sensor/local.yaml
     vars:
       uid: button_3
       row: 1
       column: 0
       text: Net Consumption today
       icon: $mdi_transmission_tower_import
-      icon_color: deep_orange
-      sensor_id: sensor_net_energy_consumption_today
-      sensor_font: nunito_24
+      entity_id: sensor_net_energy_consumption_today
 
   button_4: !include
-    file: esphome-modular-lvgl-buttons/buttons/sensor_button_legacy.yaml
+    file: esphome-modular-lvgl-buttons/ui/sensor/local.yaml
     vars:
       uid: button_4
       row: 2
       column: 0
       text: Production today
       icon: $mdi_solar_power
-      icon_color: green
-      sensor_id: sensor_energy_production_today
-      sensor_font: nunito_24
+      entity_id: sensor_energy_production_today
 
   button_5: !include
-    file: esphome-modular-lvgl-buttons/buttons/sensor_button_legacy.yaml
+    file: esphome-modular-lvgl-buttons/ui/sensor/local.yaml
     vars:
       uid: button_5
       row: 3
       column: 0
       text: Net Production today
       icon: $mdi_transmission_tower_export
-      icon_color: light_green
-      sensor_id: sensor_net_energy_production_today
-      sensor_font: nunito_24
+      entity_id: sensor_net_energy_production_today
 
   # Add a button that displays the time
   button_2: !include
