@@ -19,6 +19,7 @@ mapping:
       lightning: lightning_${size}
       lightning-rainy: lightning_rainy_${size}
       partlycloudy: partlycloudy_${size}
+      partlycloudy-night: partlycloudy_${size}
       pouring: pouring_${size}
       rainy: rainy_${size}
       snowy: snowy_${size}
