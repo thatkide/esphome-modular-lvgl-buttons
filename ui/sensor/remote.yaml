@@ -57,7 +57,6 @@ lvgl:
                 id: value_${uid}
                 align: top_right
                 text_font: ${sensor_font | default(text_font)}
-                text_font: $text_font
                 text_color: $label_on_color
                 text: "--"
 
