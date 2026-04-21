@@ -74,7 +74,6 @@ packages:
       rotation: "0"  # set screen rotation 0, 90, 180, 270
 
 
-
   # This section will add buttons and page to your screen using the ESPHome package system.
   # Each package has all the code required for the button or page (LVGL, sensors, etc)
 

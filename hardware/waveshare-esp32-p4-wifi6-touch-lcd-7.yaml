@@ -38,8 +38,8 @@ preferences:
 esp_ldo:
   - voltage: 2.5V
     channel: 3
-    
-http_request:  # Needed by esp32_hosted-update and any JSON stuff    
+
+http_request:  # Needed by esp32_hosted-update and any JSON stuff
 
 # -------------------------------------------
 # Network hardware

@@ -31,7 +31,7 @@ esp32:
   framework:
     type: esp-idf
     advanced:
-      execute_from_psram: true    
+      execute_from_psram: true
 
 psram:
   mode: octal

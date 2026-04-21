@@ -45,9 +45,9 @@ logger:
 # ----------------------------------------------------------------------------------
 # Master Time update script
 # ----------------------------------------------------------------------------------
-# This script is called once per second. 
+# This script is called once per second.
 # Any packages in this libary will !extend time_update to update their own labels
-# you can add code here to update your own custom labels. The lambda NOOP is 
+# you can add code here to update your own custom labels. The lambda NOOP is
 # only there as a place holder for your code
 # ----------------------------------------------------------------------------------
 script:
@@ -101,7 +101,7 @@ packages:
       font_size: 75
       click_page: info_screen
       style: white
-      
+
   # Add a button that displays the time
   button_3: !include
     file: esphome-modular-lvgl-buttons/ui/clock/time_button.yaml
@@ -109,7 +109,7 @@ packages:
       uid: button_3
       row: 1
       column: 2
-      click_page: info_screen      
+      click_page: info_screen
 
   # Add a light
   button_4: !include

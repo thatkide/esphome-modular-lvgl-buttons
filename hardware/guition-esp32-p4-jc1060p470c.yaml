@@ -66,7 +66,7 @@ update:
 #   type: IP101
 #   mdc_pin: GPIO31
 #   mdio_pin: GPIO52
-#   clk: 
+#   clk:
 #     pin: GPIO50
 #     mode: CLK_EXT_IN
 #   phy_addr: 1

@@ -108,7 +108,7 @@ packages:
   update_solar_realtime: !include esphome-modular-lvgl-buttons/ui/solar/update_solar_realtime.yaml
 
 
-# Nice little box with a boder and shadow. 
+# Nice little box with a boder and shadow.
 .shadow_box_styles:
     - &shadow_box_obj_base
       bg_color: gray200
@@ -134,10 +134,10 @@ lvgl:
   pages:
     - id: main_page
       layout: 3x3
-      bg_color: White 
+      bg_color: White
       styles: page_style
       <<: !include
-        file: esphome-modular-lvgl-buttons/common/swipe_navigation.yaml      
+        file: esphome-modular-lvgl-buttons/common/swipe_navigation.yaml
       widgets:
 # Time/date display box
         - obj:
@@ -149,7 +149,7 @@ lvgl:
             widgets:
               - obj:
                   <<: *shadow_box_obj_base
-                  widgets:            
+                  widgets:
                     - meter:
                         grid_cell_row_pos: 0
                         grid_cell_column_pos: 0
@@ -711,7 +711,7 @@ lvgl:
                                 text_font: ep24
                                 text_color: black
                                 text: Charged
-            
+
 #-------------------------------------------
 # Graphics and Fonts
 #-------------------------------------------
@@ -839,7 +839,7 @@ font:
     id: ep90
     size: 90
     bpp: 8
-    
+
   - file: "esphome-modular-lvgl-buttons/assets/fonts/epVisuelt-Regular.ttf"
     id: ep70
     size: 70
@@ -848,7 +848,7 @@ font:
   - file: "esphome-modular-lvgl-buttons/assets/fonts/epVisuelt-Regular.ttf"
     id: ep40
     size: 40
-    bpp: 8     
+    bpp: 8
 
   - file: "esphome-modular-lvgl-buttons/assets/fonts/epVisuelt-Regular.ttf"
     id: ep32
@@ -863,4 +863,4 @@ font:
   - file: "esphome-modular-lvgl-buttons/assets/fonts/epVisuelt-Regular.ttf"
     id: ep16
     size: 16
-    bpp: 8            
+    bpp: 8

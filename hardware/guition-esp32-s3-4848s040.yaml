@@ -87,7 +87,7 @@ touchscreen:
 # Special LVGL settings required for this display
 lvgl:
   rotation: ${rotation | default("180")}
-  
+
 spi:
   - id: lcd_spi
     clk_pin: GPIO48

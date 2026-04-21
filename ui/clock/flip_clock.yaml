@@ -18,7 +18,7 @@ font:
     size: ${font_size | default(80)}
     bpp: 8
     glyphs: "0123456789"
-  
+
   - file: "esphome-modular-lvgl-buttons/assets/fonts/gluqlo.ttf"
     id: gluqlo_font_sm
     size: 10

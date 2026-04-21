@@ -16,7 +16,7 @@ lvgl:
       # outline_color: red
     # container:
       # outline_width: 1
-      # outline_color: red      
+      # outline_color: red
     label:
       scrollbar_mode: "OFF"
       scrollable: false
@@ -52,8 +52,8 @@ lvgl:
       indicator:
         bg_color: black
       # outline_width: 1
-      # outline_color: red        
-    
+      # outline_color: red
+
   style_definitions:
     - id: page_style
       scrollbar_mode: "OFF"

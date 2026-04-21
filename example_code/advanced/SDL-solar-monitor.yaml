@@ -53,7 +53,7 @@ esphome:
   name: "solar-monitor"
   friendly_name: "Solar Monitor"
   comment: "Enphase solar monitor"
-  
+
 api:
 
 logger:
@@ -126,7 +126,7 @@ packages:
       size: 60
 
 
-# Nice little box with a boder and shadow. 
+# Nice little box with a boder and shadow.
 .shadow_box_styles:
     - &shadow_box_obj_base
       width: 310px
@@ -165,7 +165,7 @@ lvgl:
         pad_row: 10
       bg_color: White
       <<: !include
-        file: esphome-modular-lvgl-buttons/common/swipe_navigation.yaml      
+        file: esphome-modular-lvgl-buttons/common/swipe_navigation.yaml
       widgets:
 # Time/date display box
         - obj:
@@ -669,7 +669,7 @@ lvgl:
         - obj:
             width: 470px
             height: 150px
-            
+
 #-------------------------------------------
 # Graphics and Fonts
 #-------------------------------------------
@@ -703,7 +703,7 @@ font:
     id: ep90
     size: 90
     bpp: 8
-    
+
   - file: "esphome-modular-lvgl-buttons/assets/fonts/epVisuelt-Regular.ttf"
     id: ep70
     size: 70
@@ -712,7 +712,7 @@ font:
   - file: "esphome-modular-lvgl-buttons/assets/fonts/epVisuelt-Regular.ttf"
     id: ep40
     size: 40
-    bpp: 8     
+    bpp: 8
 
   - file: "esphome-modular-lvgl-buttons/assets/fonts/epVisuelt-Regular.ttf"
     id: ep32
@@ -727,4 +727,4 @@ font:
   - file: "esphome-modular-lvgl-buttons/assets/fonts/epVisuelt-Regular.ttf"
     id: ep16
     size: 16
-    bpp: 8            
+    bpp: 8

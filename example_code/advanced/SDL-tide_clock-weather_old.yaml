@@ -34,7 +34,7 @@ substitutions:
   # Screen Size
   screen_height: '480'
   screen_width: '800'
-  byte_order: little_endian  
+  byte_order: little_endian
 
 esphome:
   name: "tideweather-display"
@@ -66,7 +66,7 @@ packages:
 
   # Hardware description file
   hardware: !include esphome-modular-lvgl-buttons/hardware/SDL-lvgl.yaml
-  
+
   # Basic boot screen with ESPHome logo and device diagnostic info
   loading_screen: !include esphome-modular-lvgl-buttons/pages/loading.yaml
   info_screen: !include esphome-modular-lvgl-buttons/pages/info.yaml

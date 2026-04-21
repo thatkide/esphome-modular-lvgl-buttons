@@ -2,7 +2,7 @@ substitutions:
   # Screen Size
   screen_height: '480'
   screen_width: '480'
-  
+
   icon_font: mdi_icons_40
   text_font: nunito_20
   text_color: white
@@ -14,7 +14,7 @@ substitutions:
   label_on_color: "white"
   label_off_color: "gray"
   button_text_color: "white"
-  
+
 packages:
   # Generic configuration for ESP32 screens
   # All the colors
@@ -22,7 +22,7 @@ packages:
   # Fonts you need
   # 1000s of glyphs
   # Some basic sensors
-  # theme:  !include esphome-modular-lvgl-buttons/common/theme/index_debug.yaml  # uncomment to enable debug outlines  
+  # theme:  !include esphome-modular-lvgl-buttons/common/theme/index_debug.yaml  # uncomment to enable debug outlines
 
 # Weather packages
   # Display weather forecast using direct HA action (no template sensor needed!)
@@ -78,7 +78,7 @@ touchscreen:
     - &weather_obj_base
       grid_cell_x_align: stretch
       grid_cell_y_align: stretch
-      
+
     - &forecast_obj_base
       height: SIZE_CONTENT
       width: SIZE_CONTENT
@@ -120,7 +120,7 @@ lvgl:
             grid_cell_row_pos: 0
             grid_cell_column_pos: 0
             grid_cell_row_span: 1
-            grid_cell_column_span: 1 
+            grid_cell_column_span: 1
             widgets:
 
               - label:
@@ -133,7 +133,7 @@ lvgl:
             grid_cell_row_pos: 0
             grid_cell_column_pos: 1
             grid_cell_row_span: 1
-            grid_cell_column_span: 1 
+            grid_cell_column_span: 1
             widgets:
               - label:
                   text: "---%"
@@ -161,14 +161,14 @@ lvgl:
             grid_cell_row_pos: 0
             grid_cell_column_pos: 2
             grid_cell_row_span: 2
-            grid_cell_column_span: 2          
+            grid_cell_column_span: 2
             widgets:
               - image:
                  src: unknown_200
                  id: weather_condition_icon
                  align: center
-  
-  
+
+
         - obj:
             <<: *forecast_obj_base
             grid_cell_row_pos: 2
@@ -197,7 +197,7 @@ lvgl:
             grid_cell_row_pos: 2
             grid_cell_column_pos: 1
             grid_cell_row_span: 2
-            grid_cell_column_span: 1            
+            grid_cell_column_span: 1
             widgets:
                 - label:
                     id: forecast_day_1
@@ -220,7 +220,7 @@ lvgl:
             grid_cell_row_pos: 2
             grid_cell_column_pos: 2
             grid_cell_row_span: 2
-            grid_cell_column_span: 1            
+            grid_cell_column_span: 1
             widgets:
                 - label:
                     id: forecast_day_2
@@ -243,7 +243,7 @@ lvgl:
             grid_cell_row_pos: 2
             grid_cell_column_pos: 3
             grid_cell_row_span: 2
-            grid_cell_column_span: 1            
+            grid_cell_column_span: 1
             widgets:
                 - label:
                     id: forecast_day_3
@@ -260,4 +260,4 @@ lvgl:
                 - label:
                     id: forecast_temperature_lo_3
                     <<: *forecast_label_base_lo
-                    text: "---°"                  
+                    text: "---°"

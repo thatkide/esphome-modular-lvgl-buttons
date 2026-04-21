@@ -64,7 +64,7 @@ light:
     icon: mdi:lightbulb-on
     id: display_backlight
     restore_mode: ALWAYS_ON
-  
+
   - platform: rgb
     id: rgb_led
     name: RGB LED

@@ -81,7 +81,7 @@ lvgl:
                           action: cover.stop_cover
                           data:
                             entity_id: ${entity_id}
-                
+
 text_sensor:
   - platform: homeassistant
     id: ha_state_${uid}

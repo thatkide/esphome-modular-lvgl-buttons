@@ -30,7 +30,7 @@ substitutions:
   # Screen Size
   screen_height: '480'
   screen_width: '800'
-  byte_order: little_endian  
+  byte_order: little_endian
 
 esphome:
   name: "tideweather-display"
@@ -50,16 +50,16 @@ http_request:
 # ----------------------------------------------------------------------------------
 # Master Time update script
 # ----------------------------------------------------------------------------------
-# This script is called once per second. 
+# This script is called once per second.
 # Any packages in this libary will !extend time_update to update their own labels
-# you can add code here to update your own custom labels. The lambda NOOP is 
+# you can add code here to update your own custom labels. The lambda NOOP is
 # only there as a place holder for your code
 # ----------------------------------------------------------------------------------
 script:
   - id: time_update
     then:
       - lambda: |-
-          // No operation 
+          // No operation
 
 packages:
   # Generic configuration for ESP32 screens
@@ -76,7 +76,7 @@ packages:
 
   # Hardware description file
   hardware: !include esphome-modular-lvgl-buttons/hardware/SDL-lvgl.yaml
-  
+
   # Basic boot screen with ESPHome logo and device diagnostic info
   loading_screen: !include esphome-modular-lvgl-buttons/pages/loading.yaml
   info_screen: !include esphome-modular-lvgl-buttons/pages/info.yaml
@@ -86,7 +86,7 @@ packages:
     file: esphome-modular-lvgl-buttons/ui/tides/NOAA_tide_update.yaml
     vars:
       noaa_station_id: "8454578"    # Your station ID
-      noaa_unit_system: "english"   # or "metric"  
+      noaa_unit_system: "english"   # or "metric"
 
 # Weather packages
   # Display weather forecast using direct HA action (no template sensor needed!)
@@ -177,7 +177,7 @@ lvgl:
                   text_font: nunito_80
                   align: left_mid
                   text: "100°"
-                  
+
          - container:
             grid_cell_x_align: stretch
             grid_cell_y_align: stretch
@@ -190,7 +190,7 @@ lvgl:
                    src: unknown_180
                    id: weather_condition_icon
                    align: center
-                  
+
          - container:
             grid_cell_x_align: stretch
             grid_cell_y_align: stretch
@@ -243,7 +243,7 @@ lvgl:
                   text: "-- mi"
                   grid_cell_row_pos: 2
                   grid_cell_column_pos: 1
-                  grid_cell_x_align: END                  
+                  grid_cell_x_align: END
 
          - container:
             grid_cell_x_align: stretch
@@ -280,7 +280,7 @@ lvgl:
                     - label:
                         id: weather_wind_speed_today
                         text_font: nunito_20
-                        text: "--mph"            
+                        text: "--mph"
 
 
          - container:
@@ -297,7 +297,7 @@ lvgl:
                   align: center
                   long_mode: WRAP
                   width: 100%
-                  text: "forcast"                  
+                  text: "forcast"
 
          - container:
             id: bottom_label_1
@@ -462,7 +462,7 @@ lvgl:
                           - label:
                                 id: low_tide_height
                                 text_font: nunito_24
-                                text: "-0.00 ft" 
+                                text: "-0.00 ft"
 
          - container:
             grid_cell_x_align: stretch
@@ -521,7 +521,7 @@ lvgl:
                                   label_gap: 25
                                   stride: 1
                                   width: 2
-                                  length: 20    
+                                  length: 20
 
                     - obj:
                         align: TOP_LEFT
@@ -586,4 +586,4 @@ lvgl:
                               text_font: nunito_20
                               text_align: center
                               width: 100%
-                              text: "Low Tide"                     
+                              text: "Low Tide"
